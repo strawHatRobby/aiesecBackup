@@ -19,7 +19,9 @@ class UserManager(BaseUserManager):
         user = self.model(
             email=self.normalize_email(email),
             username=username,
-            display_name=display_name
+            display_name=display_name,
+            department=Department.objects.get(id=1)
+
         )
         user.set_password(password)
         user.save()
@@ -45,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     bio = models.CharField(max_length=140, blank=True, default="")
     avatar = models.ImageField(blank=True, null=True)
     date_joined = models.DateTimeField(default=timezone.now)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
 
