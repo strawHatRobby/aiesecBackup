@@ -107,8 +107,8 @@ DATABASES = {
 #LOGIN REDIRECTS
 
 LOGIN_REDIRECT_URL = reverse_lazy('accounts:dashboard')
-LOGIN_URL = reverse_lazy('accounts:login')
-LOGOUT_URL = reverse_lazy('accounts:logout')
+LOGIN_URL = reverse_lazy('login')
+
 
 # Media Roots
 
