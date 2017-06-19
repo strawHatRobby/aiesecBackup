@@ -1,7 +1,8 @@
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
-    PermissionsMixin
+    PermissionsMixin,
+    Group
 )
 from django.db import models
 from django.utils import timezone
@@ -25,7 +26,8 @@ class UserManager(BaseUserManager):
             email=self.normalize_email(email),
             username=username,
             display_name=display_name,
-            department=Department.objects.get(id=1)
+            department=Department.objects.get(id=1),
+            group = Group.objects.get(pk=3)
 
         )
         user.set_password(password)
@@ -65,6 +67,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    group = models.OneToOneField(Group, on_delete=models.CASCADE,
+                            related_name="member_of")
     review = models.ManyToManyField('self', through=Review,
     related_name='testinomial', symmetrical=False)
 
