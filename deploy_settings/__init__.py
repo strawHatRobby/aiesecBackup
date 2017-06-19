@@ -87,9 +87,7 @@ WSGI_APPLICATION = 'fix.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 
-import dj_database_url
-dj_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+
 
 # DATABASES = {
 #     'default': {
@@ -98,16 +96,20 @@ DATABASES['default'].update(db_from_env)
 #     }
 # }
 #
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'aiesecdu',
-#        'USER': 'djangoadmin',
-#        'PASSWORD': 'the british are coming',
-#        'HOST': 'localhost',
-#        'PORT': '',
-#    }
-#}
+DATABASES = {
+   'default': {
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+       'NAME': 'aiesecdu',
+       'USER': 'djangoadmin',
+       'PASSWORD': 'the british are coming',
+       'HOST': 'localhost',
+       'PORT': '',
+   }
+}
+
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 #LOGIN REDIRECTS
 
