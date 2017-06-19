@@ -25,7 +25,7 @@ SECRET_KEY = 'g3iayqzzjw3+r^8st%wb4tewr71n31-65m)_%-%uyso+**&!j6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['secret-basin-76991.herokuapp.com']
+ALLOWED_HOSTS = ['aiesecdelhi.herokuapp.com']
 AUTH_USER_MODEL = 'accounts.User'
 
 # Application definition

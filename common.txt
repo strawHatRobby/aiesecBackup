@@ -1,0 +1,7 @@
+Common: django, django-pagination, django-tastypie, South
+
+Dev: django-debug-toolbar
+
+Prod: gunicorn, psycopg2
+
+Test: coverage, nose
