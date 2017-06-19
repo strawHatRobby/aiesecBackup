@@ -9,6 +9,10 @@ from department.models import Department
 from review.models import Review
 from django.conf import settings
 
+from django.core.validators import RegexValidator
+
+EMAIL_REGEX = '^[a-z0-9](\.?[a-z0-9]){5,}@aiesec\.net$'
+USERNAME_REGEX = '^[a-zA-Z0-9.@+_]*$'
 
 class UserManager(BaseUserManager):
     def create_user(self, email, username, display_name=None, password=None):
@@ -42,8 +46,18 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True)
-    username = models.CharField(max_length=40, unique=True)
+    email = models.EmailField(unique=True,max_length=255,
+    blank=False,
+     validators=[RegexValidator( regex = EMAIL_REGEX,
+     message='Email must end with @gmail.com',
+     code='invalid email')])
+    username = models.CharField(max_length=40,blank=False,
+    unique=True,
+    validators=[RegexValidator( regex = USERNAME_REGEX,
+     message='username must be alphanumeric or contain ., @, +, _',
+     code='invalid_username')])
+    first_name = models.CharField(max_length=100, blank=False)
+    last_name = models.CharField(max_length=100, blank=False)
     display_name = models.CharField(max_length=140)
     bio = models.TextField(max_length=500, blank=True, default="")
     avatar = models.ImageField(blank=True, null=True)
@@ -56,8 +70,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["display_name", "username"]
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["display_name", "email"]
 
     def __str__(self):
         return "@{}".format(self.username)
