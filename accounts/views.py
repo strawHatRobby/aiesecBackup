@@ -1,11 +1,18 @@
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
 from django.views import generic
+
 
 from . import forms
 
 
+@login_required
+def dashboard(request):
+    return render(request,
+                'account/dashboard.html',
+                {'section':'dashboard'})
 class LoginView(generic.FormView):
     form_class = AuthenticationForm
     success_url = reverse_lazy("document:upload")
