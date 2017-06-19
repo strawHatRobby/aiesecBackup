@@ -6,6 +6,7 @@ from django.contrib.auth.models import (
 from django.db import models
 from django.utils import timezone
 from department.models import Department
+from review.models import Review
 from django.conf import settings
 
 
@@ -44,12 +45,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=40, unique=True)
     display_name = models.CharField(max_length=140)
-    bio = models.CharField(max_length=140, blank=True, default="")
+    bio = models.TextField(max_length=500, blank=True, default="")
     avatar = models.ImageField(blank=True, null=True)
     date_joined = models.DateTimeField(default=timezone.now)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    review = models.ManyToManyField('self', through=Review,
+    related_name='testinomial', symmetrical=False)
 
     objects = UserManager()
 

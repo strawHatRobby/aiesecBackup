@@ -10,7 +10,7 @@ def user_directory_path(instance, filename):
 class Document(models.Model):
     title = models.CharField(max_length=255)
     document = models.FileField(upload_to=user_directory_path)
-    description = models.CharField(max_length=255)
+    description = models.TextField(max_length=500)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL,
     on_delete=models.CASCADE, related_name="uploader")
