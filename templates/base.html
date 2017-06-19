@@ -1,28 +1,237 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>{% block title %}{% endblock %}</title>
-  </head>
-  <body>
-    {% if request.user.is_authenticated %}
-    <ul class="menu">
-          <li {% if section == "dashboard" %} class="selected" {% endif %}>
-            {% if request.user.is_authenticated %}
-            <a href="{% url 'accounts:dashboard' %}">{{ request.user.group.name }} Dashboard </a>
-            {% else %}
-            <a href="{% url 'accounts:login' %}">Login</a>
-            {% endif %}
-          </li>
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en-US">
+<head>
 
-    </ul>
-    {% endif %}
+    <!-- DEFAULT META TAGS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- FONTS -->
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Lora:400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" id="default-style-css"  href="{% static 'css/style.css' %}" type="text/css" media="all" />
+    <link rel="stylesheet" id="fontawesome-style-css" href="{% static 'css/font-awesome.min.css' %}" type="text/css" media="all" />
+    <link rel="stylesheet" id="ionic-icons-style-css" href="{% static 'css/ionicons.css' %}" type="text/css" media="all" />
+    <link rel="stylesheet" id="revolution-slider-main-css" href="{% static 'revolution/css/settings.css' %}" type="text/css" media="all" />
+    <link rel="stylesheet" id="revolution-slider-layer-css" href="{% static 'revolution/css/layers.css' %}" type="text/css" media="all" />
+	<link rel="stylesheet" id="revolution-slider-nav-css" href="{% static 'revolution/css/navigation.css' %}" type="text/css" media="all" />
+    <link rel="stylesheet" id="owlcarousel-css" href="{% static 'css/owl.carousel.css' %}" type="text/css" media="all" />
+    <link rel="stylesheet" id="lightcase-css" href="{% static 'css/lightcase.css' %}" type="text/css" media="all" />
+	<link rel="stylesheet" id="isotope-style-css"  href="{% static 'css/isotope.css' %}" type="text/css" media="all" />
+    <link rel="stylesheet" id="mqueries-style-css"  href="{% static 'css/mqueries.css' %}" type="text/css" media="all" />
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="{% static 'uploads/favicon.png' %}"/>
+
     <span class="user">
           {% if request.user.is_authenticated %}
           Hello {{ request.user.first_name }},
           <a href="{% url 'accounts:logout' %}">Logout</a>
         {% endif %}
-    {% block content %}
-    {% endblock %}
-  </body>
+    <!-- DOCUMENT TITLE -->
+    <title>{% block title %} Home {% endblock %}| AIESEC in DU</title>
+
+</head>
+
+<body>
+
+<!-- PAGELOADER -->
+<div id="page-loader">
+	<div class="page-loader-inner">
+     	<span class="loader-figure"></span>
+        <img class="loader-logo" src="{% static 'uploads/logo-sudo-scroll.png' %}" srcset="{% static 'uploads/logo-sudo-scroll.png' 1x %} , {% static 'uploads/logo-sudo-scroll@2x.png' 2x %} " alt="Loader Logo">
+	</div>
+</div>
+<!-- PAGELOADER -->
+
+<!-- PAGE CONTENT -->
+<div id="page-content">
+<!-- HEADER -->
+    <header id="header" class="header-bordered header-transparent transparent-light">
+        <div class="header-inner clearfix">
+
+            <!-- LOGO -->
+            <div id="logo" class="left-float">
+                <a href="index.html">
+                    <img id="scroll-logo" src="{% static 'uploads/logo-sudo-scroll.png' %}" srcset="{% static 'uploads/logo-sudo-scroll.png' 1x %} , {% static 'uploads/logo-sudo-scroll@2x.png' 2x %} " alt="Logo Scroll">
+                    <img id="dark-logo" src="{% static 'uploads/logo-sudo-dark.png' %}" srcset="{% static 'uploads/logo-sudo-dark.png' 1x %} , {% static 'uploads/logo-sudo-dark@2x.png' 2x %} " alt="Logo Dark">
+                    <img id="light-logo" src="{% static 'uploads/logo-sudo-light.png' %}" srcset="{% static 'uploads/logo-sudo-light.png' 1x %} , {% static 'uploads/logo-sudo-light@2x.png' 2x %} " alt="Logo Light">
+                </a>
+            </div>
+
+            <!-- MAIN NAVIGATION -->
+            <div id="menu" class="right-float clearfix">
+                <a href="#" class="responsive-nav-toggle"><span class="hamburger"></span></a>
+                <div class="menu-inner">
+                    <nav id="main-nav">
+                        <ul>
+                            <li class="menu-item-has-children mega-menu"><a href="#">Experience Partners</a>
+                                <div class="mega-menu-content col-4">
+                                    <div class="mega-menu-inner clearfix">
+                                        <ul>
+                                            <li class="mega-menu-title"><a href="#">Global Volunteer</a>
+                                                <ul>
+                                                    <li><a href="opportunities.html">Browse Opportunities</a></li>
+                                                    <li><a href="#">Help</a></li>
+<!--                                                     <li><a href="portfolio-grid-fullwidth.html">Grid</a></li>
+                                                    <li><a href="portfolio-grid-fullwidth-spaced.html">Grid Spaced</a></li>
+                                                    <li><a href="portfolio-masonry-fullwidth.html">Masonry</a></li>
+                                                    <li><a href="portfolio-masonry-fullwidth-spaced.html">Masonry Spaced</a></li>
+                                                    <li><a href="portfolio-carousel-fullwidth.html">Carousel</a></li>
+                                                    <li><a href="portfolio-carousel-fullwidth-spaced.html">Carousel Spaced</a></li> -->
+                                                </ul>
+                                            </li>
+
+                                            <li class="mega-menu-title"><a href="#">Global Talent</a>
+                                                <ul>
+                                                    <li><a href="projects.html">Browse Projects</a></li>
+                                                    <li><a href="#">Guides</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div> <!-- END .mega-menu-inner -->
+                                </div> <!-- END .mega-menu-content -->
+                            </li>
+                             <li class="menu-item-has-children mega-menu"><a href="#">Members</a>
+                                <div class="mega-menu-content col-4">
+                                    <div class="mega-menu-inner clearfix">
+                                        <ul>
+                                            <li class="mega-menu-title"><a href="#">Access your account</a>
+                                                <ul>
+
+                                                        <li {% if section == "dashboard" %} class="selected" {% endif %}>
+                                                          {% if request.user.is_authenticated %}
+                                                          <a href="{% url 'accounts:dashboard' %}">{{ request.user.group.name }} Dashboard </a>
+                                                          {% else %}
+                                                          <a href="{% url 'accounts:login' %}">Login</a>
+                                                          {% endif %}
+                                                        </li>
+
+<!--                                                     <li><a href="portfolio-grid-fullwidth.html">Grid</a></li>
+                                                    <li><a href="portfolio-grid-fullwidth-spaced.html">Grid Spaced</a></li>
+                                                    <li><a href="portfolio-masonry-fullwidth.html">Masonry</a></li>
+                                                    <li><a href="portfolio-masonry-fullwidth-spaced.html">Masonry Spaced</a></li>
+                                                    <li><a href="portfolio-carousel-fullwidth.html">Carousel</a></li>
+                                                    <li><a href="portfolio-carousel-fullwidth-spaced.html">Carousel Spaced</a></li> -->
+                                                </ul>
+                                            </li>
+
+                                            <li class="mega-menu-title"><a href="#">Access Resources</a>
+                                                <ul>
+                                                    <li><a href="portfolio-single-smartnav.html">Brand Guides</a></li>
+                                                    <li><a href="portfolio-single-custom.html">Notices</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div> <!-- END .mega-menu-inner -->
+                                </div> <!-- END .mega-menu-content -->
+                            </li>
+
+
+                        </ul>
+                    </nav>
+
+                    <div id="menu-misc" class="clearfix">
+
+                        <!-- HEADER SEARCH -->
+                        <div id="header-search">
+                            <a href="#" id="show-search"><i class="fa fa-search"></i></a>
+                            <div class="header-search-content">
+                                <form action="http://www.spab-rice.com/themeforest/sudo/demo/search.html" method="get">
+                                    <a href="#" id="close-search"></a>
+                                    <input type="text" name="q" class="form-control" value="" placeholder="Enter your search ...">
+                                    <h5 class="subtitle-1">... & press enter to start</h5>
+                                </form>
+                                <div class="search-outer"></div>
+                            </div>
+                        </div>
+
+
+                    </div><!-- END #menu-misc -->
+                </div><!-- END .menu-inner -->
+            </div><!-- END #menu -->
+
+        </div> <!-- END .header-inner -->
+    </header>
+
+    <!-- HERO  -->
+
+
+
+    <!-- PAGEBODY -->
+    <section id="page-body">
+
+      {% block content %}{% endblock %}
+
+ 	</section>
+	<!-- PAGEBODY -->
+
+
+    <!-- FOOTER -->
+    <footer id="footer" class="footer-dark text-light">
+        <div class="footer-inner align-center wrapper">
+
+            <div class="column-section clearfix">
+                <div class="column one-full">
+
+                    <div class="widget widget_text">
+                        <img src="{% static 'uploads/logo-sudo-scroll.png' %}" srcset="{% static 'uploads/logo-sudo-scroll.png' 1x %} , {% static 'uploads/logo-sudo-scroll@2x.png' 2x %} " alt="Logo">
+                    </div>
+
+                    <div class="widget widget_menu">
+                        <ul class="menu">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Support</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="widget widget_socialmedia">
+                        <ul class="socialmedia-widget hover-fade-1">
+                            <li class="facebook"><a href="https://www.facebook.com/aiesecdelhiuniversity/"  target="_blank"></a></li>
+                            <li class="twitter"><a href="https://twitter.com/aiesec_du?lang=en"  target="_blank"></a></li>
+                            <li class="instagram"><a href="https://www.instagram.com/aiesecdu/"  target="_blank"></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <a id="backtotop" href="#">Back to top</a>
+        </div>
+
+         <div class="copyright"><small>Copyright &copy; 2017 - Made with Love by <a href="http://arslaan.xyz/">Amar Arslaan</a></small></div>
+    </footer>
+    <!-- FOOTER -->
+
+</div> <!-- END #page-content -->
+<!-- PAGE CONTENT -->
+
+<!-- SCRIPTS -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.visible.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'revolution/js/jquery.themepunch.tools.min838f.js' %} ?rev=5.0"></script>
+<script type="text/javascript" src="{% static 'revolution/js/jquery.themepunch.revolution.min838f.js' %} ?rev=5.0"></script>
+<script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/tweenMax.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.backgroundparallax.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.isotope.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.imagesloaded.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.owl.carousel.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.lightcase.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+<!-- SCRIPTS -->
+
+</body>
 </html>

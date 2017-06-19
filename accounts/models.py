@@ -67,7 +67,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
-    group = models.OneToOneField(Group, on_delete=models.CASCADE,
+    group = models.ForeignKey(Group, on_delete=models.CASCADE,
+                            default=3,
                             related_name="member_of")
     review = models.ManyToManyField('self', through=Review,
     related_name='testinomial', symmetrical=False)
@@ -78,7 +79,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ["display_name", "email"]
 
     def __str__(self):
-        return "@{}".format(self.username)
+        return "{}".format(self.username)
 
     def get_short_name(self):
         return self.display_name

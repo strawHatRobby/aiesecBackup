@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}Progress{% endblock %}
+{% block content %}
+<div class="spacer-big"></div>
+<hr>
+<div class="spacer-big"></div>
+            
+        <section id="hero" class="hero-auto" style="background: #913044;">
+
+              <div id="page-title" class="wrapper align-center">
+                  <h2 class="uppercase"><strong>Your progress so far...</strong></h2>
+              </div> <!-- END #page-title -->
+
+          </section>
+        <div class="wrapper">
+            {% for progress in progresss %}
+              <div class="column-section clearfix">
+                    <div class="progress-bar-item">
+                          <h6 class="progress-name">Quality 1</h6>
+                          <div class="progress-bar"><div class="progress-active" style="background-color:#f75067;" data-perc="88">
+                          <span class="tooltip">progress.quality1 %</span></div></div>
+                      </div>
+                      <div class="spacer-big"></div>
+
+                      <div class="progress-bar-item">
+                          <h6 class="progress-name">Quality 2</h6>
+                          <div class="progress-bar"><div class="progress-active" style="background-color:#aa88b6;" data-perc="97">
+                          <span class="tooltip">progress.quality2 %</span></div></div>
+                      </div>
+                      <div class="spacer-big"></div>
+
+                      <div class="progress-bar-item">
+                          <h6 class="progress-name">Quality 3</h6>
+                          <div class="progress-bar"><div class="progress-active" style="background-color:#5e349c;" data-perc="59">
+                          <span class="tooltip">progress.quality3 %</span></div></div>
+                      </div>
+                      <div class="spacer-big"></div>
+
+                      <div class="progress-bar-item">
+                          <h6 class="progress-name">Quality 4</h6>
+                          <div class="progress-bar"><div class="progress-active" style="background-color:#39ab86;" data-perc="59">
+                          <span class="tooltip">progress.quality4 %</span></div></div>
+                      </div>
+                      <div class="spacer-big"></div>
+
+                       <div class="progress-bar-item">
+                          <h6 class="progress-name">Quality 5</h6>
+                          <div class="progress-bar"><div class="progress-active" style="background-color:#a03537;" data-perc="59">
+                          <span class="tooltip">progress.quality5 %</span></div></div>
+                      </div>
+                  </div>
+              </div>
+            {% endfor %}
+          {% if perms.progress.add_progress %}
+          <a href="{% url 'progress:create_progress' %}" class="btn btn-primary">Edit Progress</a>
+            {% endif %}
+        </div>
+    </div>
+
+</div> <!-- END .column-section -->
+            <div class="spacer-big"></div>
+<hr>
+<div class="spacer-big"></div>
+
+
+
+
+
+{% endblock %}
