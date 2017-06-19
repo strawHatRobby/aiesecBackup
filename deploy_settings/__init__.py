@@ -17,6 +17,7 @@ from django.core.urlresolvers import reverse_lazy
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -85,6 +86,11 @@ WSGI_APPLICATION = 'fix.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+
+import dj_database_url
+dj_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -92,16 +98,16 @@ WSGI_APPLICATION = 'fix.wsgi.application'
 #     }
 # }
 #
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'aiesecdu',
-        'USER': 'djangoadmin',
-        'PASSWORD': 'the british are coming',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'aiesecdu',
+#        'USER': 'djangoadmin',
+#        'PASSWORD': 'the british are coming',
+#        'HOST': 'localhost',
+#        'PORT': '',
+#    }
+#}
 
 #LOGIN REDIRECTS
 
