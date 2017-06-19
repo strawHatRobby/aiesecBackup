@@ -23,6 +23,7 @@ djangorestframework==3.4.7
 enum34==1.1.6
 first==2.0.1
 flake8==2.5.0
+gunicorn==19.7.1
 idna==2.5
 incremental==16.10.1
 ipaddress==1.0.18
