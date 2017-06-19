@@ -1,1 +1,1 @@
-web: gunicorn fix.wsgi --log-file -
+web: gunicorn deploy --log-file -
