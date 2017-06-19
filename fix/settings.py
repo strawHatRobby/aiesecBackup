@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'document',
     'progress',
     'review',
-
+    'notification',
+    'universal',
     #third party apps
     'bootstrap3',
 ]
