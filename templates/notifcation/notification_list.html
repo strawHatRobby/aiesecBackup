@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Notification{% endblock %}
+{% block content %}
+<div class="spacer-big"></div>
+<hr>
+<div class="spacer-big"></div>
+
+            <h4 class="align-center"><strong>Notifications</strong></h4>
+
+<div class="column-section boxed-spaced adapt-height vertical-center clearfix">
+    <div class="column one-third testimonial">
+        <div class="testimonial-content">
+          {% for notification in notifications %}
+            <h4>{{ notification.title }}
+            <blockquote>{{ notification.content }}</blockquote>
+            <h5 class="testimonial-name">{{ notification.notification_by }}</h5>
+            <h6 class="testimonial-meta subtitle-1">{{ notification.notification_by.department }}</h6>
+            {% if perms.notification.can_add_notification %}
+            <a href="{% url 'notification:create_notification' %}" class="btn btn-primary">Add Notification</a>
+              {% endif %}
+            {% endfor %}}
+        </div>
+        <div class="testimonial-add">
+
+
+        </div>
+    </div>
+
+</div> <!-- END .column-section -->
+            <div class="spacer-big"></div>
+<hr>
+<div class="spacer-big"></div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Notification{% endblock %}
+{% block content %}
+    <form action="." method="POST">
+      {% if perms.notifcation.can_add_notifcation %}
+      {% csrf_token %}
+      {{ form.as_p }}
+      <p><input type="submit" class="btn btn-danger" value="Delete"></p>
+      {% endif %}
+{% endblock %}

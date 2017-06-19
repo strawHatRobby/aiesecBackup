@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Notification{% endblock %}
+{% block content %}
+<div class="notification-content"/>
+    <h1>{{ notification.title }}</h1>
+    <p>{{ notification.content }}</p>
+    <p><i>{{ notification.added_on }}</i></p>
+</div>
+<div id="modify">
+      {% if perms.notification.can_add_notification %}
+        <a href="{% url 'notification:create_notification' %}" class="btn btn-primary">Add Notification</a>
+          {% endif %}
+
+      {% if perms.notification.can_change_notification %}
+            <a href="{% url 'notification:edit_notification' %}" class="btn btn-primary">Edit</a>
+              {% endif %}
+            {% if perms.notification.can_delete_notification %}
+            <a href="{% url 'notification:delete_notification' %}" class="btn btn-danger">Delete</a>
+              {% endif %}
+</div>
+{% endblock %}
