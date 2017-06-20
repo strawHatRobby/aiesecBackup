@@ -50,10 +50,10 @@
 
             <!-- LOGO -->
             <div id="logo" class="left-float">
-                <a href="index.html">
-                    <img id="scroll-logo" src="{% static 'uploads/logo-sudo-scroll.png' %}" srcset="{% static 'uploads/logo-sudo-scroll.png' 1x %} , {% static 'uploads/logo-sudo-scroll@2x.png' 2x %} " alt="Logo Scroll">
-                    <img id="dark-logo" src="{% static 'uploads/logo-sudo-dark.png' %}" srcset="{% static 'uploads/logo-sudo-dark.png' 1x %} , {% static 'uploads/logo-sudo-dark@2x.png' 2x %} " alt="Logo Dark">
-                    <img id="light-logo" src="{% static 'uploads/logo-sudo-light.png' %}" srcset="{% static 'uploads/logo-sudo-light.png' 1x %} , {% static 'uploads/logo-sudo-light@2x.png' 2x %} " alt="Logo Light">
+                <a href="{% url 'universal:home' %}">
+                  <img id="scroll-logo" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/uploads/logo-sudo-scroll.png" srcset="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/uploads/logo-sudo-scroll.png 1x, https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/uploads/logo-sudo-scroll@2x.png 2x" alt="Logo Scroll">
+                  <img id="dark-logo" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/uploads/logo-sudo-dark.png" srcset="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/uploads/logo-sudo-dark.png 1x, https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/uploads/logo-sudo-dark@2x.png 2x" alt="Logo Dark">
+                  <img id="light-logo" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/uploads/logo-sudo-light.png" srcset="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/uploads/logo-sudo-light.png 1x, https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/uploads/logo-sudo-light@2x.png 2x" alt="Logo Light">
                 </a>
             </div>
 
@@ -69,7 +69,8 @@
                                         <ul>
                                             <li class="mega-menu-title"><a href="#">Global Volunteer</a>
                                                 <ul>
-                                                    <li><a href="opportunities.html">Browse Opportunities</a></li>
+                                                    <li><a href="{% url 'universal:opportunities' %}">Browse Opportunities</a></li>
+                                                    <li><a href="{% url 'universal:guidesigv' %}">Guides</a></li>
                                                     <li><a href="#">Help</a></li>
 <!--                                                     <li><a href="portfolio-grid-fullwidth.html">Grid</a></li>
                                                     <li><a href="portfolio-grid-fullwidth-spaced.html">Grid Spaced</a></li>
@@ -82,8 +83,8 @@
 
                                             <li class="mega-menu-title"><a href="#">Global Talent</a>
                                                 <ul>
-                                                    <li><a href="projects.html">Browse Projects</a></li>
-                                                    <li><a href="#">Guides</a></li>
+                                                    <li><a href="{% url 'universal:projects' %}">Browse Projects</a></li>
+                                                    <li><a href="{% url 'universal:guidesigt' %}'">Guides</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -96,15 +97,8 @@
                                         <ul>
                                             <li class="mega-menu-title"><a href="#">Access your account</a>
                                                 <ul>
-
-                                                        <li {% if section == "dashboard" %} class="selected" {% endif %}>
-                                                          {% if request.user.is_authenticated %}
-                                                          <a href="{% url 'accounts:dashboard' %}">{{ request.user.group.name }} Dashboard </a>
-                                                          {% else %}
-                                                          <a href="{% url 'accounts:login' %}">Login</a>
-                                                          {% endif %}
-                                                        </li>
-
+                                                    <li><a href="#">Login</a></li>
+                                                    <li><a href="#">Sign Up</a></li>
 <!--                                                     <li><a href="portfolio-grid-fullwidth.html">Grid</a></li>
                                                     <li><a href="portfolio-grid-fullwidth-spaced.html">Grid Spaced</a></li>
                                                     <li><a href="portfolio-masonry-fullwidth.html">Masonry</a></li>
@@ -116,8 +110,15 @@
 
                                             <li class="mega-menu-title"><a href="#">Access Resources</a>
                                                 <ul>
-                                                    <li><a href="portfolio-single-smartnav.html">Brand Guides</a></li>
-                                                    <li><a href="portfolio-single-custom.html">Notices</a></li>
+                                                    <li><a href="https://www.aiesec.it/wp-content/uploads/2017/02/AIESEC_Bluebook_Brand_Toolkit.pdf">Brand Toolkit(Bluebook)</a></li>
+                                                    <li><a href="{% url 'universal:notices' %}">Notices</a></li>
+                                                    <li><a href="{% url 'universal:ldmresources' %}">Leadership Development Model</a></li>
+                                                    <li><a href="{% url 'universal:contacts' %}">Contacts</a></li>
+                                                    <li><a href="{% url 'universal:awdocuments' %}">AIESEC way documents</a></li>
+                                                    <li><a href="{% url 'universal:igv' %}">Incoming Global Volunteer</a></li>
+                                                    <li><a href="{% url 'universal:igt' %}">Incoming Global Talent</a></li>
+
+
                                                 </ul>
                                             </li>
                                         </ul>
@@ -169,65 +170,65 @@
 	<!-- PAGEBODY -->
 
 
-    <!-- FOOTER -->
-    <footer id="footer" class="footer-dark text-light">
-        <div class="footer-inner align-center wrapper">
+  <!-- FOOTER -->
+  <footer id="footer" class="footer-dark text-light">
+      <div class="footer-inner align-center wrapper">
 
-            <div class="column-section clearfix">
-                <div class="column one-full">
+          <div class="column-section clearfix">
+              <div class="column one-full">
 
-                    <div class="widget widget_text">
-                        <img src="{% static 'uploads/logo-sudo-scroll.png' %}" srcset="{% static 'uploads/logo-sudo-scroll.png' 1x %} , {% static 'uploads/logo-sudo-scroll@2x.png' 2x %} " alt="Logo">
-                    </div>
+                  <div class="widget widget_text">
+                      <img src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/uploads/logo-sudo-scroll.png" srcset="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/uploads/logo-sudo-scroll.png 1x, https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/uploads/logo-sudo-scroll@2x.png 2x" alt="Logo">
+                  </div>
 
-                    <div class="widget widget_menu">
-                        <ul class="menu">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                    </div>
+                  <div class="widget widget_menu">
+                      <ul class="menu">
+                          <li><a href="#">About Us</a></li>
+                          <li><a href="#">Support</a></li>
+                          <li><a href="#">Blog</a></li>
+                          <li><a href="{% url 'universal:contacts' %}">Contact Us</a></li>
+                      </ul>
+                  </div>
 
-                    <div class="widget widget_socialmedia">
-                        <ul class="socialmedia-widget hover-fade-1">
-                            <li class="facebook"><a href="https://www.facebook.com/aiesecdelhiuniversity/"  target="_blank"></a></li>
-                            <li class="twitter"><a href="https://twitter.com/aiesec_du?lang=en"  target="_blank"></a></li>
-                            <li class="instagram"><a href="https://www.instagram.com/aiesecdu/"  target="_blank"></a></li>
-                        </ul>
-                    </div>
+                  <div class="widget widget_socialmedia">
+                      <ul class="socialmedia-widget hover-fade-1">
+                          <li class="facebook"><a href="https://www.facebook.com/aiesecdelhiuniversity/"  target="_blank"></a></li>
+                          <li class="twitter"><a href="https://twitter.com/aiesec_du?lang=en"  target="_blank"></a></li>
+                          <li class="instagram"><a href="https://www.instagram.com/aiesecdu/"  target="_blank"></a></li>
+                      </ul>
+                  </div>
 
-                </div>
-            </div>
+              </div>
+          </div>
 
-            <a id="backtotop" href="#">Back to top</a>
-        </div>
+          <a id="backtotop" href="#">Back to top</a>
+      </div>
 
-         <div class="copyright"><small>Copyright &copy; 2017 - Made with Love by <a href="http://arslaan.xyz/">Amar Arslaan</a></small></div>
-    </footer>
-    <!-- FOOTER -->
+       <div class="copyright"><small>Copyright &copy; 2017 - Made with Love by <a href="http://arslaan.xyz/">Amar Arslaan</a></small></div>
+  </footer>
+  <!-- FOOTER -->
 
 </div> <!-- END #page-content -->
 <!-- PAGE CONTENT -->
 
 <!-- SCRIPTS -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="{% static 'js/jquery.easing.1.3.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.visible.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'revolution/js/jquery.themepunch.tools.min838f.js' %} ?rev=5.0"></script>
-<script type="text/javascript" src="{% static 'revolution/js/jquery.themepunch.revolution.min838f.js' %} ?rev=5.0"></script>
-<script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/tweenMax.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.backgroundparallax.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.isotope.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.imagesloaded.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.owl.carousel.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.lightcase.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+<script src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/js/jquery.visible.min.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/revolution/js/jquery.themepunch.tools.min838f.js?rev=5.0"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/revolution/js/jquery.themepunch.revolution.min838f.js?rev=5.0"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/revolution/js/extensions/revolution.extension.video.min.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/js/tweenMax.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/js/jquery.backgroundparallax.min.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/js/jquery.isotope.min.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/js/jquery.owl.carousel.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/js/jquery.lightcase.min.js"></script>
+<script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/js/script.js"></script>
 <!-- SCRIPTS -->
 
 </body>
