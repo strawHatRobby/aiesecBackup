@@ -3,9 +3,10 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
 from django.views import generic
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 
+from .models import User
 from . import forms
 from .forms import LoginForm, UserRegistrationForm
 
@@ -83,3 +84,18 @@ class LogoutView(generic.RedirectView):
 #     form_class = forms.UserCreateForm
 #     success_url = reverse_lazy("login")
 #     template_name = "accounts/signup.html"
+#
+#
+
+@login_required
+def user_list(request):
+    users = User.objects.filter(is_active=True)
+    return render(request, 'accounts/user/list.html',
+                            {'section':'people', 'users': users})
+
+@login_required
+def user_detail(request,pk):
+    user = get_object_or_404(User, pk=pk, is_active=True)
+    return render(request, 'accounts/user/detail.html',
+                            {'section':'people',
+                            'pk':pk})

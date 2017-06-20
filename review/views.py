@@ -10,6 +10,11 @@ class ReviewCreateView(CreateView):
     fields = ['title','content']
     success_url = reverse_lazy('accounts:dashboard')
 
+    def get_initial(self, *args, **kwargs):
+        return { 'review_by' : self.request.user.id }
+
+
+
 class ReviewListView(ListView):
     context_object_name = "reviews"
     model = Review

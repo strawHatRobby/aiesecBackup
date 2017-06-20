@@ -17,7 +17,6 @@ from django.core.urlresolvers import reverse_lazy
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -25,9 +24,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'g3iayqzzjw3+r^8st%wb4tewr71n31-65m)_%-%uyso+**&!j6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    'aiesecdu.herokuapp.com'
+]
 AUTH_USER_MODEL = 'accounts.User'
 
 # Application definition
@@ -56,6 +58,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -86,9 +89,6 @@ WSGI_APPLICATION = 'fix.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-
-
-
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -96,17 +96,6 @@ WSGI_APPLICATION = 'fix.wsgi.application'
 #     }
 # }
 #
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'aiesecdu',
-       'USER': 'djangoadmin',
-       'PASSWORD': 'the british are coming',
-       'HOST': 'localhost',
-       'PORT': '',
-   }
-}
-
 import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
@@ -114,8 +103,8 @@ DATABASES['default'].update(db_from_env)
 #LOGIN REDIRECTS
 
 LOGIN_REDIRECT_URL = reverse_lazy('accounts:dashboard')
-LOGIN_URL = reverse_lazy('accounts:login')
-LOGOUT_URL = reverse_lazy('accounts:logout')
+LOGIN_URL = reverse_lazy('login')
+
 
 # Media Roots
 
@@ -159,3 +148,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "files"),
+]
+
+#Absolute urls for users
+ABSOLUTE_URL_OVVERIDES = {
+    'accounts.user': lambda u: reverse_lazy('user_detail', args=[u.username])
+}

@@ -10,6 +10,8 @@ from department.models import Department
 from review.models import Review
 from django.conf import settings
 
+from django.core.urlresolvers import reverse
+
 from django.core.validators import RegexValidator
 
 EMAIL_REGEX = '^[a-z0-9](\.?[a-z0-9]){5,}@aiesec\.net$'
@@ -73,6 +75,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     review = models.ManyToManyField('self', through=Review,
     related_name='testinomial', symmetrical=False)
 
+
     objects = UserManager()
 
     USERNAME_FIELD = "username"
@@ -86,3 +89,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_long_name(self):
         return "{} (@{})".format(self.display_name, self.username)
+
+    def get_full_name(self):
+        return "{} {}".format(self.first_name, self.last_name)
+
+    def get_absolute_url(self):
+        return reverse('accounts:user_detail', args=[self.id])

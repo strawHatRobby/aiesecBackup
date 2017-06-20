@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.get_full_name }}{% endblock %}
+
+{% block content %}
+        <p>{{ user.pk }}
+    <h1>{{ user.get_full_name }}</h1>
+    {% include 'progress/progress_list.html' %}
+    {% include 'review/review_list.html' %}
+
+      {% endblock %}

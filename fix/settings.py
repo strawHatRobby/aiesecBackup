@@ -155,3 +155,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "files"),
 ]
+
+#Absolute urls for users
+ABSOLUTE_URL_OVVERIDES = {
+    'accounts.user': lambda u: reverse_lazy('user_detail', args=[u.username])
+}
