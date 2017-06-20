@@ -113,7 +113,7 @@ DATABASES['default'].update(db_from_env)
 #LOGIN REDIRECTS
 
 LOGIN_REDIRECT_URL = reverse_lazy('accounts:dashboard')
-LOGIN_URL = reverse_lazy('universal:home')
+LOGIN_URL = reverse_lazy('login')
 
 
 # Media Roots

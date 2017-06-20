@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     # url(r"login/$", views.user_login, name="login"),
     url(r"login/$", login, name="login"),
-    url(r"logout/$",logout, {'next_page': 'accounts:login'}, name="logout"),
+    url(r"logout/$",logout, {'next_page': 'universal:home'}, name="logout"),
     url(r"logout-then-login/$",logout_then_login, name="logout_then_login"),
     # change password
     url(r'password-change/', password_change, name='password_change'),
