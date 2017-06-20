@@ -53,7 +53,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True,max_length=255,
     blank=False,
      validators=[RegexValidator( regex = EMAIL_REGEX,
-     message='Email must end with @aiesec.net',
+     message='Email must be a valid @aiesec.net',
      code='invalid email')])
     username = models.CharField(max_length=40,blank=False,
     unique=True,

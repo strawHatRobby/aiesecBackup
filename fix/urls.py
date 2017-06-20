@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^progress/',include('progress.urls',namespace='progress')),
     url(r'^document/',include('document.urls',namespace='document')),
     url(r'^review/',include('review.urls',namespace='review')),
+    url(r'^notification/',include('notification.urls',namespace='notification')),
     url(r'^department/',include('department.urls',namespace='department')),
     url(r'^',include('universal.urls',namespace='universal')),
     url(r'^admin/', admin.site.urls),

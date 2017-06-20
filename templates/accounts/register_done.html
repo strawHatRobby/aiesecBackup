@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}SignUp Complete{% endblock %}
+
+{% block content %}
+  <h1>Welcome {{ new_user.first_name }}!</h1>
+  <p>Your account has been successfully created, and is now to be approved by your VP.</p>
+  <p>If you can't login in a days time, try contacting your respective department's VP</p>
+  <p>Click <a href="{% url 'universal:home' %}">here</a> to return to the site</p>
+{% endblock %}

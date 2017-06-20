@@ -15,3 +15,6 @@ class Department(models.Model):
 
     def get_dept_name(self):
         return '{}'.format(self.name)
+        
+    def __str__(self):
+        return '{}'.format(self.name)

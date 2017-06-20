@@ -12,3 +12,6 @@ class Notification(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return 'notification:home', (self.slug,)
+
+    def __str__(self):
+        return '{}'.format(self.title)

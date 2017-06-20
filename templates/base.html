@@ -1,4 +1,5 @@
 {% load static %}
+{% load admin_urls %}
 <!doctype html>
 <html class="no-js" lang="en-US">
 <head>
@@ -28,11 +29,7 @@
     <!-- FAVICON -->
     <link rel="shortcut icon" href="{% static 'uploads/favicon.png' %}"/>
 
-    <span class="user">
-          {% if request.user.is_authenticated %}
-          Hello {{ request.user.first_name }},
-          <a href="{% url 'accounts:logout' %}">Logout</a>
-        {% endif %}
+   
     <!-- DOCUMENT TITLE -->
     <title>{% block title %} Home {% endblock %}| AIESEC in DU</title>
 
@@ -84,7 +81,7 @@
                                             <li class="mega-menu-title"><a href="#">Global Talent</a>
                                                 <ul>
                                                     <li><a href="{% url 'universal:projects' %}">Browse Projects</a></li>
-                                                    <li><a href="{% url 'universal:guidesigt' %}'">Guides</a></li>
+                                                    <li><a href="{% url 'universal:guidesigt' %}">Guides</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -97,8 +94,10 @@
                                         <ul>
                                             <li class="mega-menu-title"><a href="#">Access your account</a>
                                                 <ul>
-                                                    <li><a href="#">Login</a></li>
-                                                    <li><a href="#">Sign Up</a></li>
+                                                    {% if not request.user.is_authenticated %}
+                                                    <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                                                    <li><a href="{% url 'accounts:register' %}">Sign Up</a></li>
+                                                    {% endif %}
 <!--                                                     <li><a href="portfolio-grid-fullwidth.html">Grid</a></li>
                                                     <li><a href="portfolio-grid-fullwidth-spaced.html">Grid Spaced</a></li>
                                                     <li><a href="portfolio-masonry-fullwidth.html">Masonry</a></li>
@@ -111,22 +110,30 @@
                                             <li class="mega-menu-title"><a href="#">Access Resources</a>
                                                 <ul>
                                                     <li><a href="https://www.aiesec.it/wp-content/uploads/2017/02/AIESEC_Bluebook_Brand_Toolkit.pdf">Brand Toolkit(Bluebook)</a></li>
-                                                    <li><a href="{% url 'universal:notices' %}">Notices</a></li>
+                                                    <li><a href="{% url 'notification:list_notification' %}">Notices</a></li>
                                                     <li><a href="{% url 'universal:ldmresources' %}">Leadership Development Model</a></li>
                                                     <li><a href="{% url 'universal:contacts' %}">Contacts</a></li>
                                                     <li><a href="{% url 'universal:awdocuments' %}">AIESEC way documents</a></li>
                                                     <li><a href="{% url 'universal:igv' %}">Incoming Global Volunteer</a></li>
                                                     <li><a href="{% url 'universal:igt' %}">Incoming Global Talent</a></li>
-
-
                                                 </ul>
+                                                 <li class="mega-menu-title"><a href="#">For Vice Presidents</a>
+                                                <ul>
+                                                    <li><a href="{% url 'admin:index' %}">Login</a></li>
+                                                </ul>
+                                            </li>
                                             </li>
                                         </ul>
                                     </div> <!-- END .mega-menu-inner -->
                                 </div> <!-- END .mega-menu-content -->
                             </li>
-
-
+                                        <li>
+                                     <span class="user">
+                                          {% if request.user.is_authenticated %}
+                                              {{ request.user.first_name }},
+                                          <a href="{% url 'accounts:logout' %}">Logout</a>
+                                            {% endif %}
+                                        </li>
                         </ul>
                     </nav>
 
@@ -204,7 +211,7 @@
           <a id="backtotop" href="#">Back to top</a>
       </div>
 
-       <div class="copyright"><small>Copyright &copy; 2017 - Made with Love by <a href="http://arslaan.xyz/">Amar Arslaan</a></small></div>
+       <div class="copyright"><small>Copyright &copy; 2017 - Made with Love by <a href="http://amararslaan.com">Amar Arslaan</a> <span class="glyphicon glyphicon-plus"></span> & <a href="http://github.com/strawHatRobby">Robin Francis</a></small></div>
   </footer>
   <!-- FOOTER -->
 
@@ -229,6 +236,7 @@
 <script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/js/jquery.owl.carousel.js"></script>
 <script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/js/jquery.lightcase.min.js"></script>
 <script type="text/javascript" src="https://s3-ap-southeast-1.amazonaws.com/elasticbeanstalk-ap-southeast-1-984289724176/js/script.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- SCRIPTS -->
 
 </body>

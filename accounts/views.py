@@ -12,6 +12,7 @@ from progress.models import Progress
 from . import forms
 from .forms import LoginForm, UserRegistrationForm
 
+from django.views.decorators.csrf import csrf_protect
 
 @login_required
 def dashboard(request):
@@ -19,7 +20,7 @@ def dashboard(request):
                 'accounts/dashboard.html',
                 {'section':'dashboard'})
 
-
+@csrf_protect
 def register(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)

@@ -14,7 +14,7 @@ def guidesigt(request):
     return render(request, 'universal/guidesigt.html')
 
 def guidesigv(request):
-    return render(request, 'universal/home.html')
+    return render(request, 'universal/guidesigv.html')
 
 def igt(request):
     return render(request, 'universal/igt.html')
