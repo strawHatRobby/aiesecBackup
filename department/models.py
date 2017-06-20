@@ -13,8 +13,5 @@ class Department(models.Model):
     def get_absolute_url(self):
         return 'department:home', (self.slug,)
 
-# class Moderator(models.Model):
-#     department = models.OneToOneField(Department, on_delete=models.CASCADE,
-#                                         related_name="department_of")
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
-#                                 related_name="moderator_of")
+    def get_dept_name(self):
+        return '{}'.format(self.name)

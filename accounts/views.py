@@ -7,6 +7,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 
 from .models import User
+from review.models import Review
+from progress.models import Progress
 from . import forms
 from .forms import LoginForm, UserRegistrationForm
 
@@ -95,7 +97,12 @@ def user_list(request):
 
 @login_required
 def user_detail(request,pk):
-    user = get_object_or_404(User, pk=pk, is_active=True)
+    profile_user = get_object_or_404(User, pk=pk, is_active=True)
+    reviews = Review.objects.filter(review_of=profile_user)
+    progress_list = Progress.objects.filter(user=profile_user)
     return render(request, 'accounts/user/detail.html',
                             {'section':'people',
-                            'pk':pk})
+                            'pk':pk,
+                            'profile_user':profile_user,
+                            'reviews':reviews,
+                            'progress_list':progress_list})

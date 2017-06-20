@@ -1,11 +1,106 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ user.get_full_name }}{% endblock %}
+{% block title %}{{ profile_user.get_full_name }}{% endblock %}
 
 {% block content %}
-        <p>{{ user.pk }}
-    <h1>{{ user.get_full_name }}</h1>
-    {% include 'progress/progress_list.html' %}
-    {% include 'review/review_list.html' %}
+    <h1>{{ profile_user.get_full_name }}</h1>
+    <div class="spacer-big"></div>
+    <hr>
+    <div class="spacer-big"></div>
+
+            <section id="hero" class="hero-auto" style="background: #913044;">
+
+                  <div id="page-title" class="wrapper align-center">
+                      <h2 class="uppercase"><strong>Your progress so far...</strong></h2>
+                  </div> <!-- END #page-title -->
+
+              </section>
+            <div class="wrapper">
+                {% for progress in progress_list %}
+                  <div class="column-section clearfix">
+                        <div class="progress-bar-item">
+                              <h6 class="progress-name">Quality 1</h6>
+                              <div class="progress-bar"><div class="progress-active" style="background-color:#f75067;" data-perc="{{ progress.quality1 }}">
+                              <span class="tooltip">{{ progress.quality1 }} %</span></div></div>
+                          </div>
+                          <div class="spacer-big"></div>
+
+                          <div class="progress-bar-item">
+                              <h6 class="progress-name">Quality 2</h6>
+                              <div class="progress-bar"><div class="progress-active" style="background-color:#aa88b6;" data-perc="{{ progress.quality2 }}">
+                              <span class="tooltip">{{ progress.quality2 }} %</span></div></div>
+                          </div>
+                          <div class="spacer-big"></div>
+
+                          <div class="progress-bar-item">
+                              <h6 class="progress-name">Quality 3</h6>
+                              <div class="progress-bar"><div class="progress-active" style="background-color:#5e349c;" data-perc="{{ progress.quality3 }}">
+                              <span class="tooltip">{{ progress.quality3 }} %</span></div></div>
+                          </div>
+                          <div class="spacer-big"></div>
+
+                          <div class="progress-bar-item">
+                              <h6 class="progress-name">Quality 4</h6>
+                              <div class="progress-bar"><div class="progress-active" style="background-color:#39ab86;" data-perc="{{ progress.quality4 }}">
+                              <span class="tooltip">{{ progress.quality4 }} %</span></div></div>
+                          </div>
+                          <div class="spacer-big"></div>
+
+                           <div class="progress-bar-item">
+                              <h6 class="progress-name">Quality 5</h6>
+                              <div class="progress-bar"><div class="progress-active" style="background-color:#a03537;" data-perc="{{ progress.quality5 }}">
+                              <span class="tooltip">{{ progress.quality5 }} %</span></div></div>
+                          </div>
+                      </div>
+                  </div>
+                {% endfor %}
+              {% if perms.progress.add_progress %}
+              <a href="{% url 'progress:create_progress' %}" class="btn btn-primary">Edit Progress</a>
+                {% endif %}
+            </div>
+        </div>
+
+    </div> <!-- END .column-section -->
+                <div class="spacer-big"></div>
+    <hr>
+    <div class="spacer-big"></div>
+
+
+
+
+
+
+
+<div class="spacer-big"></div>
+<hr>
+<div class="spacer-big"></div>
+
+            <h4 class="align-center"><strong>Comments by VPs</strong></h4>
+
+<div class="column-section boxed-spaced adapt-height vertical-center clearfix">
+    <div class="column one-third testimonial">
+        <div class="testimonial-content">
+          {% for review in reviews %}
+            <h4>{{ review.title }}</h4>
+            <blockquote>{{ review.content }}</blockquote>
+            <h5 class="testimonial-name">{{ review.review_by }}</h5>
+            <h6 class="testimonial-meta subtitle-1">{{ review.review_by.department.name }}</h6>
+            {% endfor %}
+        </div>
+        <div class="testimonial-add">
+
+          {% if perms.review.can_add_review %}
+          <a href="{% url 'review:create_review' %}" class="btn btn-primary">Add Review</a>
+            {% endif %}
+        </div>
+    </div>
+
+</div> <!-- END .column-section -->
+            <div class="spacer-big"></div>
+<hr>
+<div class="spacer-big"></div>
+
+
+
 
       {% endblock %}
