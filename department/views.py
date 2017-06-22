@@ -7,9 +7,10 @@ from django.shortcuts import get_object_or_404
 
 @login_required
 def department_list(request):
-    department = get_object_or_404(Department)
-    return render(request, 'department/list.html',
-                    {'department':department})
+    department = Department.objects.all()
+    users = User.objects.all()
+    return render(request, 'department/department_list.html',
+                    {'department':department, 'users':users})
 
 @login_required
 def department_detail(request, pk):
