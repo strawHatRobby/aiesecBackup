@@ -56,7 +56,7 @@
               </div>
 
           {% if perms.progress.add_progress %}
-          <a href="{% url 'progress:create_progress' %}" class="btn btn-primary">Edit Progress</a>
+          <!-- <a href="{% url 'progress:create_progress' %}" class="btn btn-primary">Edit Progress</a> -->
             {% endif %}
         </div>
     </div>
@@ -91,7 +91,7 @@
     <div class="testimonial-add">
 
       {% if perms.review.can_add_review %}
-      <a href="{% url 'review:create_review' %}" class="btn btn-primary">Add Review</a>
+      <!-- <a href="{% url 'review:create_review' %}" class="btn btn-primary">Add Review</a> -->
         {% endif %}
     </div>
 </div>
