@@ -7,9 +7,11 @@
     <div id="member-list">
       {% for user in users %}
           <div class="user">
+            {% if user.is_active = True }
                 <a href="{{ user.get_absolute_url }}" class="title">
                     {{ user.get_full_name }}
                   </a>
+            {% endif %}
                 </div>
         {% endfor %}
       </div>
