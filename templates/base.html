@@ -29,7 +29,7 @@
     <!-- FAVICON -->
     <link rel="shortcut icon" href="{% static 'uploads/favicon.png' %}"/>
 
-   
+
     <!-- DOCUMENT TITLE -->
     <title>{% block title %} Home {% endblock %}| AIESEC in DU</title>
 
@@ -97,6 +97,8 @@
                                                     {% if not request.user.is_authenticated %}
                                                     <li><a href="{% url 'accounts:login' %}">Login</a></li>
                                                     <li><a href="{% url 'accounts:register' %}">Sign Up</a></li>
+                                                    {% else %}
+                                                    <li><a href="{% url 'accounts:dashboard' %}">Dashboard</a></li>
                                                     {% endif %}
 <!--                                                     <li><a href="portfolio-grid-fullwidth.html">Grid</a></li>
                                                     <li><a href="portfolio-grid-fullwidth-spaced.html">Grid Spaced</a></li>
@@ -117,10 +119,12 @@
                                                     <li><a href="{% url 'universal:igv' %}">Incoming Global Volunteer</a></li>
                                                     <li><a href="{% url 'universal:igt' %}">Incoming Global Talent</a></li>
                                                 </ul>
+                                                {% if not request.user.is_authenticated %}
                                                  <li class="mega-menu-title"><a href="#">For Vice Presidents</a>
                                                 <ul>
                                                     <li><a href="{% url 'admin:index' %}">Login</a></li>
                                                 </ul>
+                                                {% endif %}
                                             </li>
                                             </li>
                                         </ul>
