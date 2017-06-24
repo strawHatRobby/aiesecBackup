@@ -6,7 +6,11 @@
 {% if request.user.department.id == user.department.id %}
 <ul>
   {% if user.is_active == True %}
+    {% if user.id = request.user.id %}
+    <l1><a href="{% url 'accounts:dashboard' %}">{{ user.get_full_name }}</a></li>
+    {% else %}
     <l1><a href="{{ user.get_absolute_url }}">{{ user.get_full_name }}</a></li>
+    {% endif %}
   {% endif %}
 </ul>
 {% endif %}
