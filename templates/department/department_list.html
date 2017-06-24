@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{ request.user.department.get_dept_name }}</h1>
+<h1>{{ request.user.department.get_dept_name }} ({{ department.count }})</h1>
 {% for user in users %}
 {% if request.user.department.id == user.department.id %}
 <ul>
