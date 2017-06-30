@@ -4,14 +4,40 @@
 {% block title_tag %}Login | {{ block.super }}{% endblock %}
 
 {% block content %}
-<div class="container">
+
+{% block css %}
+<style type="text/css">
+
+
+body{
+padding-top:120px;
+}
+
+
+  </style>
+{% endblock %}
+<div class="wrapper">
     <h1>Login</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Login" class="btn btn-default">
-    </form>
+    <div class="column-section clearfix">
+        <div class="column one-half">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <input type="submit" value="Login" class="btn btn-default">
+            </form>
+        </div>
+    </div>
     <p>Forgot your password? Click
       <a href="{% url 'accounts:password_reset' %}">here</a></p>
 </div>
+
+{% block javascript %}
+<script type="text/javascript" >
+  
+  document.getElementById("header").classList.remove("header-transparent");
+  document.getElementById("header").classList.remove("transparent-light");
+</script>
+{% endblock %}
+
 {% endblock %}

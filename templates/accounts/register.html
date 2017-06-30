@@ -3,12 +3,41 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-  <h1>Sign Up for a new Account</h1>
-  <p>Please, sign up using the following form:</p>
-  <form action="." method="POST">
-    {% csrf_token %}
-    {{ user_form.as_p }}
-    
-    <p><input type="submit" value="Sign Up"></p>
-  </form>
+
+{% block css %}
+<style type="text/css">
+
+
+body{
+padding-top:90px;
+}
+
+  </style>
+{% endblock %}
+<div class="wrapper">
+  
+  <div class="column-section clearfix">
+       <h1>Sign Up for a new Account</h1>
+
+        <div class="column one-half">
+        <p>Please, sign up using the following form:</p>
+        <form action="." method="POST">
+          {% csrf_token %}
+          {{ user_form.as_p }}
+          
+          <p><input type="submit" value="Sign Up"></p>
+        </form>
+      </div>
+  </div>
+</div>
+  
+  
+  {% block javascript %}
+<script type="text/javascript" >
+  
+  document.getElementById("header").classList.remove("header-transparent");
+  document.getElementById("header").classList.remove("transparent-light");
+</script>
+{% endblock %}
+
 {% endblock %}
