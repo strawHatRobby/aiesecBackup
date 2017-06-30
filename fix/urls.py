@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^notification/',include('notification.urls',namespace='notification')),
     url(r'^department/',include('department.urls',namespace='department')),
     url(r'^',include('universal.urls',namespace='universal')),
-    url(r'^admin/', admin.site.urls),
+    url(r'^dULANniyVhTiqu9Q3T7FgJ72hkYDo5mdoNzIh85CokLmRY0ghn1SdhvuRPwiggjFdfDoWkYRU2hBA3apgLaS0v5tXNKBtnuDI6oE/', admin.site.urls),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
