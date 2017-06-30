@@ -28,8 +28,11 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
+    '127.0.0.1',
     'aiesecdu.herokuapp.com',
+    'www.aiesecdu.herokuapp.com',
     'myaiesecdu.in',
+    'www.myaiesecdu.in',
 ]
 AUTH_USER_MODEL = 'accounts.User'
 
